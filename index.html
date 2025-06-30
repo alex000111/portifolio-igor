@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Igor Alexandre da Silva Santos</title>
+    
+    <!-- Tailwind CSS para estilização rápida e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts para a fonte monoespaçada -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (Lucide Icons) -->
+    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide-react.js"></script>
+    
+    <style>
+        /* Estilos personalizados para o tema neon */
+        :root {
+            --neon-cyan: #00FFFF;
+            --neon-magenta: #FF00FF;
+            --neon-green: #39FF14;
+            --bg-dark: #0a0a14;
+            --text-light: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Roboto Mono', monospace;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+
+        /* Efeito de brilho neon para textos */
+        .neon-text-cyan {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 40px #00aaff;
+        }
+        .neon-text-magenta {
+            color: var(--neon-magenta);
+            text-shadow: 0 0 5px var(--neon-magenta), 0 0 10px var(--neon-magenta), 0 0 20px var(--neon-magenta), 0 0 40px #ff00aa;
+        }
+
+        /* Efeito de borda neon */
+        .neon-border {
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+        }
+        
+        /* Efeito de hover para botões e links */
+        .nav-link:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        /* Animação do cursor piscando */
+        .typing-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2rem;
+            background-color: var(--neon-cyan);
+            animation: blink 1s infinite;
+            box-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Linha do tempo */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: var(--neon-cyan);
+            box-shadow: 0 0 8px var(--neon-cyan);
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 1rem;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background-color: var(--bg-dark);
+            border: 3px solid var(--neon-magenta);
+            box-shadow: 0 0 10px var(--neon-magenta);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 30px);
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 30px);
+            text-align: left;
+        }
+        .timeline-item:nth-child(odd)::after {
+            right: -40px;
+        }
+         .timeline-item:nth-child(even)::after {
+            left: -40px;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- CABEÇALHO DE NAVEGAÇÃO FIXO -->
+    <header class="fixed top-0 left-0 right-0 bg-black bg-opacity-50 backdrop-blur-md z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <ul class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base">
+                <li><a href="#inicio" class="nav-link transition-all duration-300 p-2">INICIO</a></li>
+                <li><a href="#sobre" class="nav-link transition-all duration-300 p-2">SOBRE_MIM</a></li>
+                <li><a href="#habilidades" class="nav-link transition-all duration-300 p-2">HABILIDADES</a></li>
+                <li><a href="#projetos" class="nav-link transition-all duration-300 p-2">PROJETOS</a></li>
+                <li><a href="#experiencia" class="nav-link transition-all duration-300 p-2">EXPERIENCIA</a></li>
+                <li><a href="#contato" class="nav-link transition-all duration-300 p-2">CONTATO</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SEÇÃO INICIAL -->
+        <section id="inicio" class="h-screen flex flex-col items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop');">
+            <div class="absolute inset-0 bg-black opacity-60"></div>
+            <div class="relative z-10">
+                <h1 class="text-5xl md:text-7xl font-bold neon-text-cyan mb-4">Igor Alexandre</h1>
+                <p class="text-xl md:text-2xl text-white">
+                    <span id="typing-text"></span><span class="typing-cursor"></span>
+                </p>
+            </div>
+        </section>
+
+        <!-- SEÇÃO SOBRE MIM -->
+        <section id="sobre" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 neon-text-magenta">// SOBRE_MIM</h2>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/3 flex justify-center">
+                        <img src="images/Foto Portifólio.jpg" alt="Foto de Igor Alexandre" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover neon-border">
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h3 class="text-2xl font-bold text-white mb-2">Igor Alexandre da Silva Santos</h3>
+                        <p class="text-lg text-cyan-300 mb-4">[ Cientista de Dados | Desenvolvedor Web | Consultor de TI ]</p>
+                        <p class="text-base leading-relaxed">
+                            Profissional de Tecnologia da Informação com sólida formação em Ciência de Dados e uma trajetória diversificada que abrange machine learning, modelagem estatística, desenvolvimento web e manutenção de sistemas. Atuo como freelancer, desenvolvendo projetos, criando designs digitais e prestando consultoria. Meu objetivo é decifrar desafios complexos e impulsionar a inovação tecnológica com soluções criativas e eficientes.
+                        </p>
+                        <div class="mt-6 text-sm">
+                            <p><strong class="neon-text-cyan">Idade:</strong> 27 Anos</p>
+                            <p><strong class="neon-text-cyan">Localização:</strong> Recife, PE - Brasil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO HABILIDADES -->
+        <section id="habilidades" class="py-20 md:py-32 bg-black bg-opacity-30">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 neon-text-magenta">// HABILIDADES_TÉCNICAS</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Ciência de Dados -->
+                    <div class="p-6 bg-gray-800 bg-opacity-50 rounded-lg border border-cyan-500/30 hover:border-cyan-500 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
+                        <h3 class="text-xl font-bold neon-text-cyan mb-4">Ciência de Dados</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Python</span><span class="skill-tag">Machine Learning</span><span class="skill-tag">Modelagem Estatística</span><span class="skill-tag">MySQL</span>
+                        </div>
+                    </div>
+                    <!-- Desenvolvimento Web -->
+                    <div class="p-6 bg-gray-800 bg-opacity-50 rounded-lg border border-cyan-500/30 hover:border-cyan-500 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
+                        <h3 class="text-xl font-bold neon-text-cyan mb-4">Desenvolvimento Web</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JavaScript</span><span class="skill-tag">React</span><span class="skill-tag">Canva</span>
+                        </div>
+                    </div>
+                    <!-- Design Digital -->
+                     <div class="p-6 bg-gray-800 bg-opacity-50 rounded-lg border border-cyan-500/30 hover:border-cyan-500 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
+                        <h3 class="text-xl font-bold neon-text-cyan mb-4">Design Digital</h3>
+                        <div class="flex flex-wrap gap-2">
+                           <span class="skill-tag">Edição de Imagens (Photoshop)</span><span class="skill-tag">Criação de Logotipos</span>
+                        </div>
+                    </div>
+                    <!-- Suporte e Consultoria -->
+                     <div class="p-6 bg-gray-800 bg-opacity-50 rounded-lg border border-cyan-500/30 hover:border-cyan-500 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
+                        <h3 class="text-xl font-bold neon-text-cyan mb-4">Suporte e Consultoria</h3>
+                        <div class="flex flex-wrap gap-2">
+                           <span class="skill-tag">Suporte Técnico</span><span class="skill-tag">Manutenção de Sistemas</span><span class="skill-tag">Consultoria Tecnológica</span>
+                        </div>
+                    </div>
+                     <!-- Marketing Digital -->
+                     <div class="p-6 bg-gray-800 bg-opacity-50 rounded-lg border border-cyan-500/30 hover:border-cyan-500 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
+                        <h3 class="text-xl font-bold neon-text-cyan mb-4">Marketing Digital</h3>
+                        <div class="flex flex-wrap gap-2">
+                           <span class="skill-tag">Gestão de Mídias Sociais</span><span class="skill-tag">Estratégias Digitais</span><span class="skill-tag">Remarketing</span>
+                        </div>
+                    </div>
+                     <!-- Idiomas -->
+                     <div class="p-6 bg-gray-800 bg-opacity-50 rounded-lg border border-cyan-500/30 hover:border-cyan-500 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300">
+                        <h3 class="text-xl font-bold neon-text-cyan mb-4">Idiomas</h3>
+                        <p>Português: Nativo</p>
+                        <p>Inglês: Em aprimoramento</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SEÇÃO PROJETOS -->
+        <section id="projetos" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12 neon-text-magenta">// PROJETOS_EM_DESTAQUE</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Projeto 1 -->
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden border border-magenta-500/30 group hover:border-magenta-500 hover:shadow-lg hover:shadow-magenta-500/20 transition-all duration-300">
+                        <img src="https://placehold.co/600x400/0a0a14/FF00FF?text=Construtora+AJL" alt="Projeto AJL Construtora" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Website e Marketing - AJL Pisos LTDA</h3>
+                            <p class="text-sm mb-4">Desenvolvimento completo do website institucional, criação de identidade visual e gerenciamento estratégico do Instagram.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="skill-tag">HTML</span><span class="skill-tag">CSS</span><span class="skill-tag">JavaScript</span>
+                            </div>
+                            <a href="https://www.construtoraajl.com.br/" target="_blank" class="inline-block bg-magenta-600 text-white font-bold py-2 px-4 rounded-md hover:bg-magenta-500 transition-colors duration-300 neon-text-magenta" style="text-shadow: none;">Ver Projeto</a>
+                        </div>
+                    </div>
+                    <!-- Projeto 2 (Exemplo) -->
+                    <div class="bg-gray-800 bg-opacity-50 rounded-lg overflow-hidden border border-magenta-500/30 group hover:border-magenta-500 hover:shadow-lg hover:shadow-magenta-500/20 transition-all duration-300">
+                        <img src="https://placehold.co/600x400/0a0a14/FF00FF?text=Data+Science" alt="Projeto de Data Science" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Análise Preditiva (Projeto Pessoal)</h3>
+                            <p class="text-sm mb-4">Criação de um modelo de machine learning para análise de dados, utilizando Python e bibliotecas como Scikit-learn e Pandas.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="skill-tag">Python</span><span class="skill-tag">Machine Learning</span><span class="skill-tag">MySQL</span>
+                            </div>
+                            <a href="#" class="inline-block bg-gray-600 text-white font-bold py-2 px-4 rounded-md cursor-not-allowed">Ver no GitHub (Em breve)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO EXPERIÊNCIA -->
+        <section id="experiencia" class="py-20 md:py-32 bg-black bg-opacity-30">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-20 neon-text-magenta">// LINHA_DO_TEMPO</h2>
+                <div class="relative wrap overflow-hidden p-10 h-full timeline">
+                    
+                    <!-- Item 1: Direita -->
+                    <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-magenta-500 shadow-xl w-12 h-12 rounded-full"><h1 class="mx-auto font-semibold text-lg text-white">1</h1></div>
+                        <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-magenta-500/50">
+                            <h3 class="mb-3 font-bold text-white text-xl">Real Energy | <span class="text-magenta-400">Atual</span></h3>
+                            <p class="font-semibold text-base mb-2">Auxiliar de Suprimentos</p>
+                            <p class="text-sm leading-snug tracking-wide text-gray-300">Organização e controle de estoque, cotações, recebimento de materiais e emissão de relatórios.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Esquerda -->
+                    <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-magenta-500 shadow-xl w-12 h-12 rounded-full"><h1 class="mx-auto font-semibold text-lg text-white">2</h1></div>
+                        <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-magenta-500/50">
+                            <h3 class="mb-3 font-bold text-white text-xl">Autônomo | <span class="text-magenta-400">2017 - Atual</span></h3>
+                            <p class="font-semibold text-base mb-2">Prestador de Serviços em TI</p>
+                            <p class="text-sm leading-snug tracking-wide text-gray-300">Manutenção de hardware/software, formatação, consultoria para equipamentos e reparo de dispositivos móveis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Direita -->
+                    <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-magenta-500 shadow-xl w-12 h-12 rounded-full"><h1 class="mx-auto font-semibold text-lg text-white">3</h1></div>
+                        <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-magenta-500/50">
+                            <h3 class="mb-3 font-bold text-white text-xl">AJL Pisos LTDA | <span class="text-magenta-400">Abr 2025</span></h3>
+                            <p class="font-semibold text-base mb-2">Desenvolvedor Web e Mkt Digital</p>
+                            <p class="text-sm leading-snug tracking-wide text-gray-300">Desenvolvimento do website, criação de logos, edição de imagens e gerenciamento do Instagram.</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Esquerda -->
+                    <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-magenta-500 shadow-xl w-12 h-12 rounded-full"><h1 class="mx-auto font-semibold text-lg text-white">4</h1></div>
+                        <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-magenta-500/50">
+                            <h3 class="mb-3 font-bold text-white text-xl">Cacau Show | <span class="text-magenta-400">Páscoa 2023</span></h3>
+                             <p class="font-semibold text-base mb-2">Operador de Loja (Temporário)</p>
+                            <p class="text-sm leading-snug tracking-wide text-gray-300">Atendimento ao cliente, suporte em vendas e gestão de estoque.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 5: Direita -->
+                    <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-magenta-500 shadow-xl w-12 h-12 rounded-full"><h1 class="mx-auto font-semibold text-lg text-white">5</h1></div>
+                        <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-magenta-500/50">
+                            <h3 class="mb-3 font-bold text-white text-xl">SEED A BIT | <span class="text-magenta-400">2019</span></h3>
+                            <p class="font-semibold text-base mb-2">Analista de Marketing</p>
+                            <p class="text-sm leading-snug tracking-wide text-gray-300">Desenvolvimento de estratégias digitais e execução de campanhas de remarketing.</p>
+                        </div>
+                    </div>
+
+                     <!-- Item 6: Esquerda -->
+                    <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-magenta-500 shadow-xl w-12 h-12 rounded-full"><h1 class="mx-auto font-semibold text-lg text-white">6</h1></div>
+                        <div class="order-1 bg-gray-800 rounded-lg shadow-xl w-5/12 px-6 py-4 border border-magenta-500/50">
+                            <h3 class="mb-3 font-bold text-white text-xl">Faculdade Santa Helena | <span class="text-magenta-400">2019</span></h3>
+                             <p class="font-semibold text-base mb-2">Estagiário de TI</p>
+                            <p class="text-sm leading-snug tracking-wide text-gray-300">Manutenção e suporte técnico, instalação de softwares e solução de problemas.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO CONTATO -->
+        <section id="contato" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 neon-text-magenta">"A melhor maneira de prever o futuro é inventá-lo."</h2>
+                <p class="text-lg mb-8 text-cyan-300">- Alan Kay</p>
+                <div class="flex justify-center items-center space-x-8">
+                    <a href="https://linkedin.com/in/igor-silva-81336514b" target="_blank" class="text-cyan-400 hover:text-cyan-200 hover:scale-110 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://wa.me/5581998024284" target="_blank" class="text-cyan-400 hover:text-cyan-200 hover:scale-110 transition-all duration-300">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-8 border-t border-cyan-500/20">
+        <p class="text-sm">&copy; 2025 | Desenvolvido com <span class="neon-text-magenta">&lt;/&gt;</span> e <span class="text-red-500">&hearts;</span> por Igor Alexandre.</p>
+    </footer>
+
+    <script>
+        // Efeito de digitação
+        const typingTextElement = document.getElementById('typing-text');
+        const texts = [
+            "Cientista de Dados.",
+            "Desenvolvedor Web.",
+            "Consultor de T.I.",
+            "Apaixonado por tecnologia."
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < texts[textIndex].length) {
+                typingTextElement.textContent += texts[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typingTextElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(type, 500);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+             setTimeout(type, 500);
+        });
+        
+        // Estilo para as tags de habilidade
+        document.querySelectorAll('.skill-tag').forEach(tag => {
+            tag.classList.add('bg-cyan-900', 'text-cyan-300', 'text-xs', 'font-semibold', 'mr-2', 'px-2.5', 'py-0.5', 'rounded');
+        });
+
+    </script>
+
+</body>
+</html>
